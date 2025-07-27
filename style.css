@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-  background-color: #e8f5e9; /* pastel green background */
+  background-color: #e8f5e9;
   font-family: 'Georgia', serif;
   color: #2e4d3c;
   padding: 40px;
@@ -8,7 +8,7 @@ body {
   margin: auto;
   border: 2px solid #c8e6c9;
   border-radius: 20px;
-  background-image: url('https://i.imgur.com/l7RJd4D.png'); /* OPTIONAL: light leafy background */
+  background-image: url('https://i.imgur.com/l7RJd4D.png');
   background-repeat: repeat;
   background-size: 120px;
 }
@@ -33,6 +33,28 @@ section {
   border-radius: 15px;
   margin-bottom: 25px;
   box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+section::before {
+  content: "";
+  display: block;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: contain;
+  margin-bottom: -20px;
+}
+
+#daily-prompt::before {
+  background-image: url('https://i.imgur.com/VkzyOuK.png');
+}
+
+#daily-plan::before {
+  background-image: url('https://i.imgur.com/XboVVgC.png');
+}
+
+#contemplation::before {
+  background-image: url('https://i.imgur.com/h9e1Uws.png');
 }
 
 /* Inputs & Buttons */
@@ -62,7 +84,7 @@ button:hover {
   background-color: #66bb6a;
 }
 
-/* Checkbox link */
+/* Checkbox Links */
 a {
   color: #388e3c;
   text-decoration: none;
@@ -72,29 +94,26 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Optional animal/leafy decorations (simple icons or emojis) */
-section::before {
-  content: "";
-  display: block;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-position: left top;
-  background-size: contain;
-  margin-bottom: -20px;
+/* Word List (Memory Activity) */
+#wordList {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
 }
 
-#daily-prompt::before {
-  background-image: url('https://i.imgur.com/VkzyOuK.png'); /* bird icon */
+#wordList li {
+  background-color: #c8e6c9;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-#daily-plan::before {
-  background-image: url('https://i.imgur.com/XboVVgC.png'); /* quill icon */
-}
-
-#contemplation::before {
-  background-image: url('https://i.imgur.com/h9e1Uws.png'); /* bunny icon */
-}
-
-#historical-trivia::before {
-  background-image: url('https://i.imgur.com/zbbHzUl.png'); /* leafy swirl icon */
+#wordList li:hover {
+  background-color: #a5d6a7;
+  transform: scale(1.05);
 }
