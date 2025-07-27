@@ -2,6 +2,8 @@
 body {
   background-color: #e8f5e9; /* pastel green background */
   font-family: 'Crimson Pro', serif; /* soft serif font */
+  font-size: 18px; /* Increased for accessibility */
+  line-height: 1.6; /* Better readability */
   color: #2e4d3c;
   padding: 40px;
   max-width: 700px;
@@ -19,12 +21,19 @@ body {
 /* HEADERS */
 h1 {
   text-align: center;
-  font-size: 2.2em;
+  font-size: 2.6em; /* Increased from 2.2em */
   margin-bottom: 10px;
   color: #2e4d3c;
 }
 
-h2, h3 {
+h2 {
+  font-size: 1.8em; /* Increased from default */
+  color: #3b5d48;
+  margin-top: 30px;
+}
+
+h3 {
+  font-size: 1.4em; /* Increased from default */
   color: #3b5d48;
   margin-top: 30px;
 }
