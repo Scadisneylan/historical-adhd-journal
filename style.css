@@ -8,8 +8,12 @@ body {
   margin: auto;
   border: 2px solid #c8e6c9;
   border-radius: 20px;
-background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');  background-repeat: repeat;
-  background-size: 120px;
+
+  background-image: url('https://raw.githubusercontent.com/Scadisneylan/historical-adhd-journal/refs/heads/main/websitefordadbackground.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* HEADERS */
