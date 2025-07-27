@@ -1,19 +1,19 @@
-/* Global Styles */
+/* GLOBAL STYLES */
 body {
-  background-color: #e8f5e9;
-  font-family: 'Georgia', serif;
+  background-color: #e8f5e9; /* pastel green background */
+  font-family: 'Crimson Pro', serif; /* soft serif font */
   color: #2e4d3c;
   padding: 40px;
   max-width: 700px;
   margin: auto;
   border: 2px solid #c8e6c9;
   border-radius: 20px;
-  background-image: url('https://i.imgur.com/l7RJd4D.png');
+  background-image: url('https://i.imgur.com/l7RJd4D.png'); /* leafy texture */
   background-repeat: repeat;
   background-size: 120px;
 }
 
-/* Header */
+/* HEADERS */
 h1 {
   text-align: center;
   font-size: 2.2em;
@@ -26,15 +26,17 @@ h2, h3 {
   margin-top: 30px;
 }
 
-/* Sections */
+/* SECTION CONTAINERS */
 section {
   background-color: rgba(255, 255, 255, 0.7);
   padding: 20px;
   border-radius: 15px;
   margin-bottom: 25px;
   box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  position: relative;
 }
 
+/* SECTION ICONS */
 section::before {
   content: "";
   display: block;
@@ -46,19 +48,21 @@ section::before {
 }
 
 #daily-prompt::before {
-  background-image: url('https://i.imgur.com/VkzyOuK.png');
+  background-image: url('https://i.imgur.com/VkzyOuK.png'); /* bird icon */
 }
 
 #daily-plan::before {
-  background-image: url('https://i.imgur.com/XboVVgC.png');
+  background-image: url('https://i.imgur.com/XboVVgC.png'); /* quill icon */
 }
 
 #contemplation::before {
-  background-image: url('https://i.imgur.com/h9e1Uws.png');
+  background-image: url('https://i.imgur.com/h9e1Uws.png'); /* bunny icon */
 }
 
-/* Inputs & Buttons */
-textarea, select, input[type=text] {
+/* FORM ELEMENTS */
+textarea,
+select,
+input[type="text"] {
   width: 100%;
   padding: 12px;
   margin-top: 8px;
@@ -69,6 +73,7 @@ textarea, select, input[type=text] {
   background-color: #f1f8e9;
 }
 
+/* BUTTONS */
 button {
   background-color: #81c784;
   color: white;
@@ -84,7 +89,7 @@ button:hover {
   background-color: #66bb6a;
 }
 
-/* Checkbox Links */
+/* LINKS */
 a {
   color: #388e3c;
   text-decoration: none;
@@ -94,7 +99,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Word List (Memory Activity) */
+/* MEMORY WORD LIST */
 #wordList {
   list-style: none;
   padding-left: 0;
@@ -116,4 +121,20 @@ a:hover {
 #wordList li:hover {
   background-color: #a5d6a7;
   transform: scale(1.05);
+}
+
+/* REWARD SECTION (BLOOMING FLOWER) */
+#rewardArea img {
+  animation: bloom 1.2s ease-in-out;
+}
+
+@keyframes bloom {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
