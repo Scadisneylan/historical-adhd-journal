@@ -50,6 +50,9 @@ window.onload = function(){
   if(localStorage.getItem('dailyPlan')){
     document.getElementById('plan').value = localStorage.getItem('dailyPlan');
   }
+  if(localStorage.getItem('memoryActivity')){
+  document.getElementById('memoryAttempt').value = localStorage.getItem('memoryActivity');
+}
   if(localStorage.getItem('dailyContemplation')){
     const contemplation = JSON.parse(localStorage.getItem('dailyContemplation'));
 
@@ -68,4 +71,70 @@ window.onload = function(){
       }
     });
   }
+}
+function saveMemory(){
+  const memory = document.getElementById('memoryAttempt').value;
+  localStorage.setItem('memoryActivity', memory);
+  document.getElementById('memoryMessage').innerText = "Nice work! Your memory has been saved.";
+}
+function getRandomWordSet() {
+  const wordSets = [
+    ["Olive", "Stream", "Sparrow", "Breeze", "Moss"],
+    ["Scroll", "Candle", "Cathedral", "Chalice", "Abbey"],
+    ["Knight", "Tunic", "Pilgrim", "Prayer", "Herb"],
+    ["Papyrus", "Anchor", "Monk", "Stone", "Lily"],
+    ["Lantern", "Fountain", "Meadow", "Saint", "Vine"]
+  ];
+  return wordSets[Math.floor(Math.random() * wordSets.length)];
+}
+
+function renderWordList() {
+  const words = getRandomWordSet();
+  const list = document.getElementById("wordList");
+  list.innerHTML = "";
+
+  words.forEach(word => {
+    const li = document.createElement("li");
+    li.textContent = word;
+    li.style.cursor = "pointer";
+    li.onclick = () => li.style.display = "none";
+    list.appendChild(li);
+  });
+}
+
+// Save memory attempt
+function saveMemory(){
+  const memory = document.getElementById('memoryAttempt').value;
+  localStorage.setItem('memoryActivity', memory);
+  document.getElementById('memoryMessage').innerText = "Well done! Your memory has been saved.";
+}
+
+// Load memory attempt + generate new word list on load
+window.onload = function(){
+  if(localStorage.getItem('dailyPlan')){
+    document.getElementById('plan').value = localStorage.getItem('dailyPlan');
+  }
+
+  if(localStorage.getItem('dailyContemplation')){
+    const contemplation = JSON.parse(localStorage.getItem('dailyContemplation'));
+    ['physical', 'emotional', 'spiritual'].forEach(type => {
+      const select = document.getElementById(type + 'Feeling');
+      const other = document.getElementById(type + 'Other');
+      if (Array.from(select.options).some(o => o.value === contemplation[type])) {
+        select.value = contemplation[type];
+        other.style.display = 'none';
+      } else {
+        select.value = 'Other';
+        other.style.display = 'block';
+        other.value = contemplation[type];
+      }
+    });
+  }
+
+  if(localStorage.getItem('memoryActivity')){
+    document.getElementById('memoryAttempt').value = localStorage.getItem('memoryActivity');
+  }
+
+  // 🎲 Show a new random word list
+  renderWordList();
 }
