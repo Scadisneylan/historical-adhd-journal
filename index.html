@@ -31,18 +31,21 @@
     <p id="planMessage"></p>
   </section>
 
-  <section id="memory-activity">
+ <section id="memory-activity">
   <h2>🧠 Memory Activity</h2>
   <p>Let’s strengthen your focus and recall—just like monks used to do in quiet contemplation.</p>
   <p><strong>Instructions:</strong> Click the words below to hide them. Then try to type as many as you remember.</p>
 
   <ul id="wordList"></ul>
-<div id="rewardArea" style="display: none; margin-top: 20px; text-align: center;">
-  <img src="https://i.imgur.com/8VquqkR.png" alt="Flower reward" width="100">
-  <p style="font-size: 1.2em;">🌸 Beautiful work! Your memory is blooming.</p>
-</div>
+
+  <div id="rewardArea" style="display: none; margin-top: 20px; text-align: center;">
+    <img src="https://i.imgur.com/8VquqkR.png" alt="Flower reward" width="100">
+    <p style="font-size: 1.2em;">🌸 Beautiful work! Your memory is blooming.</p>
+  </div>
+
   <textarea id="memoryAttempt" rows="4" placeholder="What do you remember? Write the words here..."></textarea><br>
-  <button onclick="saveMemory()">Save Memory Attempt</button>
+  <button onclick="saveAllTodayEntries()">Save Memory Attempt</button>
+  <button id="revealWordsBtn" onclick="revealWords()" style="display: none; margin-left: 10px;">Reveal Words</button>
   <p id="memoryMessage"></p>
 </section>
   
