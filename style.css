@@ -9,7 +9,7 @@ body {
   border: 2px solid #c8e6c9;
   border-radius: 20px;
 
-  background-image: url('https://raw.githubusercontent.com/Scadisneylan/historical-adhd-journal/refs/heads/main/websitefordadbackground.png');
+  background-image: url('https://raw.githubusercontent.com/Scadisneylan/historical-adhd-journal/main/websitefordadbackground.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -48,6 +48,16 @@ section::before {
   background-position: left top;
   background-size: contain;
   margin-bottom: -20px;
+}
+
+/* DAILY CHECKLIST FIX */
+#daily-checklist ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#daily-checklist li {
+  margin-bottom: 8px;
 }
 
 /* FORM ELEMENTS */
