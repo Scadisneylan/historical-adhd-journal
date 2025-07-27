@@ -3,8 +3,8 @@ body {
   background-color: #e8f5e9; /* pastel green background */
   font-family: 'Crimson Pro', serif; /* soft serif font */
   color: #2e4d3c;
-  font-size: 18px; /* 👈 increase base font size */
-  line-height: 1.6;
+  font-size: 20px; /* 👈 increase base font size */
+  line-height: 1.75;
   padding: 40px;
   max-width: 700px;
   margin: auto;
