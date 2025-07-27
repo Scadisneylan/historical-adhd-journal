@@ -50,18 +50,6 @@ section::before {
   margin-bottom: -20px;
 }
 
-#daily-prompt::before {
-  background-image: url('https://i.imgur.com/VkzyOuK.png'); /* bird icon */
-}
-
-#daily-plan::before {
-  background-image: url('https://i.imgur.com/XboVVgC.png'); /* quill icon */
-}
-
-#contemplation::before {
-  background-image: url('https://i.imgur.com/h9e1Uws.png'); /* bunny icon */
-}
-
 /* FORM ELEMENTS */
 textarea,
 select,
