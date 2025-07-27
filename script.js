@@ -27,7 +27,7 @@ function renderWordList() {
     const li = document.createElement("li");
     li.textContent = word;
     li.style.cursor = "pointer";
-    
+
     li.onclick = () => {
       li.style.display = "none";
       hiddenCount++;
@@ -41,22 +41,17 @@ function renderWordList() {
   });
 }
 
-// ✅ Save Daily Plan
-function savePlan(){
-  const planText = document.getElementById('plan').value;
-  localStorage.setItem('dailyPlan', planText);
-  document.getElementById('planMessage').innerText = "Great! Your plan is saved.";
+// 📅 Get today's date key
+function getTodayKey() {
+  const today = new Date().toISOString().split("T")[0];
+  return `entry-${today}`;
 }
 
-// ✅ Save Memory Attempt
-function saveMemory(){
+// 💾 Save all entries together
+function saveAllTodayEntries() {
+  const plan = document.getElementById('plan').value;
   const memory = document.getElementById('memoryAttempt').value;
-  localStorage.setItem('memoryActivity', memory);
-  document.getElementById('memoryMessage').innerText = "Well done! Your memory has been saved.";
-}
 
-// ✅ Save Contemplation Check-in (with "Other" options)
-function saveContemplation(){
   const physicalSelect = document.getElementById('physicalFeeling').value;
   const emotionalSelect = document.getElementById('emotionalFeeling').value;
   const spiritualSelect = document.getElementById('spiritualFeeling').value;
@@ -65,9 +60,16 @@ function saveContemplation(){
   const emotional = emotionalSelect === 'Other' ? document.getElementById('emotionalOther').value : emotionalSelect;
   const spiritual = spiritualSelect === 'Other' ? document.getElementById('spiritualOther').value : spiritualSelect;
 
-  const contemplation = { physical, emotional, spiritual };
-  localStorage.setItem('dailyContemplation', JSON.stringify(contemplation));
-  document.getElementById('contemplationMessage').innerText = "Check-in complete! Well done.";
+  const entry = {
+    plan,
+    memory,
+    contemplation: { physical, emotional, spiritual }
+  };
+
+  localStorage.setItem(getTodayKey(), JSON.stringify(entry));
+  document.getElementById('planMessage').innerText = "Plan saved!";
+  document.getElementById('memoryMessage').innerText = "Memory saved!";
+  document.getElementById('contemplationMessage').innerText = "Contemplation saved!";
 }
 
 // ✅ Show/hide "Other" text input
@@ -82,14 +84,50 @@ function toggleOther(type) {
   }
 }
 
-// ✅ Restore Saved Data on Load
-window.onload = function(){
-  if(localStorage.getItem('dailyPlan')){
-    document.getElementById('plan').value = localStorage.getItem('dailyPlan');
+// 📂 Review past entries
+function showSavedEntryHistory() {
+  const entryLog = document.getElementById('entryLog');
+  entryLog.innerHTML = "";
+
+  const keys = Object.keys(localStorage).filter(k => k.startsWith('entry-')).sort().reverse();
+
+  if (keys.length === 0) {
+    entryLog.innerHTML = "<p>No past entries yet.</p>";
+    return;
   }
 
-  if(localStorage.getItem('dailyContemplation')){
-    const contemplation = JSON.parse(localStorage.getItem('dailyContemplation'));
+  keys.forEach(key => {
+    const date = key.replace('entry-', '');
+    const data = JSON.parse(localStorage.getItem(key));
+
+    const section = document.createElement("div");
+    section.style.marginBottom = "20px";
+
+    section.innerHTML = `
+      <h3>${date}</h3>
+      <p><strong>Plan:</strong> ${data.plan || "(none)"}</p>
+      <p><strong>Memory:</strong> ${data.memory || "(none)"}</p>
+      <p><strong>Contemplation:</strong><br>
+         <em>Physical:</em> ${data.contemplation?.physical || "N/A"}<br>
+         <em>Emotional:</em> ${data.contemplation?.emotional || "N/A"}<br>
+         <em>Spiritual:</em> ${data.contemplation?.spiritual || "N/A"}
+      </p>
+      <hr>
+    `;
+    entryLog.appendChild(section);
+  });
+}
+
+// ✅ Restore Today's Entry on Load
+window.onload = function(){
+  const saved = localStorage.getItem(getTodayKey());
+
+  if (saved) {
+    const entry = JSON.parse(saved);
+    document.getElementById('plan').value = entry.plan || '';
+    document.getElementById('memoryAttempt').value = entry.memory || '';
+
+    const contemplation = entry.contemplation || {};
     ['physical', 'emotional', 'spiritual'].forEach(type => {
       const select = document.getElementById(type + 'Feeling');
       const other = document.getElementById(type + 'Other');
@@ -99,14 +137,10 @@ window.onload = function(){
       } else {
         select.value = 'Other';
         other.style.display = 'block';
-        other.value = contemplation[type];
+        other.value = contemplation[type] || '';
       }
     });
   }
 
-  if(localStorage.getItem('memoryActivity')){
-    document.getElementById('memoryAttempt').value = localStorage.getItem('memoryActivity');
-  }
-
-  renderWordList(); // load new word set
+  renderWordList();
 };
