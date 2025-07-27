@@ -17,14 +17,65 @@
   <section id="daily-checklist">
     <h2>Today's Tasks</h2>
     <ul>
-      <li><input type="checkbox"> Write down your daily plan</li>
-      <li><input type="checkbox"> Complete a memory mini-game</li>
-      <li><input type="checkbox"> Take a mindful break</li>
+      <li><input type="checkbox"> <a href="#daily-plan">Write down your daily plan</a></li>
+      <li><input type="checkbox"> Complete today's memory activity</li>
+      <li><input type="checkbox"> <a href="#contemplation">Contemplation and check-in</a></li>
     </ul>
   </section>
 
+  <section id="daily-plan">
+    <h2>📝 Write Your Daily Plan</h2>
+    <textarea id="plan" rows="5" placeholder="Write your plan clearly here..."></textarea><br>
+    <button onclick="savePlan()">Save Plan</button>
+    <p id="planMessage"></p>
+  </section>
+
+ <section id="contemplation">
+  <h2>🙏 Contemplation</h2>
+  <p>In the busyness of life, it's easy to forget to check in with our body. St Francis of Assisi regularly spent time in contemplation, attuning to his physical, emotional, and spiritual states. Let's do the same.</p>
+
+  <h3>How are you feeling physically?</h3>
+  <select id="physicalFeeling" onchange="toggleOther('physical')">
+    <option>Achey</option>
+    <option>Fizzy</option>
+    <option>Stiff</option>
+    <option>Energised</option>
+    <option>Tired</option>
+    <option>Other</option>
+  </select>
+  <input type="text" id="physicalOther" placeholder="Other feeling..." style="display:none;"/>
+
+  <h3>How are you feeling emotionally?</h3>
+  <select id="emotionalFeeling" onchange="toggleOther('emotional')">
+    <option>Peaceful 😊</option>
+    <option>Content 🙂</option>
+    <option>Joyful 😄</option>
+    <option>Anxious 😟</option>
+    <option>Sad 😢</option>
+    <option>Angry 😠</option>
+    <option>Overwhelmed 😣</option>
+    <option>Calm 😌</option>
+    <option>Other</option>
+  </select>
+  <input type="text" id="emotionalOther" placeholder="Other emotion..." style="display:none;"/>
+
+  <h3>How are you feeling spiritually?</h3>
+  <select id="spiritualFeeling" onchange="toggleOther('spiritual')">
+    <option>Connected ✨</option>
+    <option>Hopeful 🌱</option>
+    <option>Searching 🔍</option>
+    <option>Peaceful 🕊️</option>
+    <option>Disconnected ⚡️</option>
+    <option>Other</option>
+  </select>
+  <input type="text" id="spiritualOther" placeholder="Other spiritual feeling..." style="display:none;"/><br><br>
+
+  <button onclick="saveContemplation()">Save Contemplation</button>
+  <p id="contemplationMessage"></p>
+</section>
+
   <section id="historical-trivia">
-    <h2>Wisdom of St. Francis</h2>
+    <h2>🌟 Wisdom of St. Francis</h2>
     <button onclick="showTrivia()">Show me!</button>
     <p id="trivia"></p>
   </section>
