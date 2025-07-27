@@ -1,6 +1,9 @@
 // 🌸 Chime sound (hosted)
 const chime = new Audio("https://cdn.pixabay.com/audio/2023/02/15/audio_3e9c7c6d2e.mp3");
 
+// Memory word state
+let currentWords = [];
+
 // 🎲 Randomised memory word sets
 function getRandomWordSet() {
   const wordSets = [
@@ -15,15 +18,18 @@ function getRandomWordSet() {
 
 // 📝 Renders memory words and tracks if all are clicked
 function renderWordList() {
-  const words = getRandomWordSet();
+  currentWords = getRandomWordSet();
   const list = document.getElementById("wordList");
   const reward = document.getElementById("rewardArea");
+  const revealButton = document.getElementById("revealWordsBtn");
 
-  reward.style.display = "none"; // Reset reward
+  reward.style.display = "none";
+  revealButton.style.display = "none";
   list.innerHTML = "";
+
   let hiddenCount = 0;
 
-  words.forEach(word => {
+  currentWords.forEach(word => {
     const li = document.createElement("li");
     li.textContent = word;
     li.style.cursor = "pointer";
@@ -31,7 +37,7 @@ function renderWordList() {
     li.onclick = () => {
       li.style.display = "none";
       hiddenCount++;
-      if (hiddenCount === words.length) {
+      if (hiddenCount === currentWords.length) {
         reward.style.display = "block";
         chime.play();
       }
@@ -116,6 +122,24 @@ function showSavedEntryHistory() {
     `;
     entryLog.appendChild(section);
   });
+}
+
+// ✅ Show original words and match against attempt
+function revealWords() {
+  const revealButton = document.getElementById("revealWordsBtn");
+  const list = document.getElementById("wordList");
+  const attempt = document.getElementById("memoryAttempt").value.toLowerCase();
+  const attemptWords = attempt.split(/[\s,.\n]+/).map(w => w.trim());
+
+  list.innerHTML = "";
+  currentWords.forEach(word => {
+    const li = document.createElement("li");
+    li.textContent = word;
+    li.style.backgroundColor = attemptWords.includes(word.toLowerCase()) ? "#aed581" : "#ffcdd2";
+    list.appendChild(li);
+  });
+
+  revealButton.style.display = "none";
 }
 
 // ✅ Restore Today's Entry on Load
